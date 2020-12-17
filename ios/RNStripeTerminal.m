@@ -61,7 +61,7 @@ static dispatch_once_t onceToken = 0;
 {
     return @{
              @"DeviceTypeChipper2X": @(SCPDeviceTypeChipper2X),
-             @"DeviceTypeWisePad3": @(SCPDeviceTypeWisePad3),
+             @"DeviceTypeWisePosE": @(SCPDeviceTypeWisePosE),
 
              @"DiscoveryMethodBluetoothScan": @(SCPDiscoveryMethodBluetoothScan),
              @"DiscoveryMethodBluetoothProximity": @(SCPDiscoveryMethodBluetoothProximity),
