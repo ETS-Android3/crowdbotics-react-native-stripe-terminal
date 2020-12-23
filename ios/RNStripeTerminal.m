@@ -165,6 +165,22 @@ RCT_EXPORT_METHOD(discoverReaders:(NSInteger *)deviceType method:(NSInteger *)me
     }];
 }
 
+RCT_EXPORT_METHOD(discoverReadersByMethod:(NSInteger *)method simulated:(BOOL *)simulated) {
+    // Attempt to abort any pending discoverReader calls first.
+    [self abortDiscoverReaders];
+
+    SCPDiscoveryConfiguration *config = [[SCPDiscoveryConfiguration alloc] initWithDiscoveryMethod:(SCPDiscoveryMethod)method
+                                                                                    simulated:simulated];
+    pendingDiscoverReaders = [SCPTerminal.shared discoverReaders:config delegate:self completion:^(NSError * _Nullable error) {
+        pendingDiscoverReaders = nil;
+        if (error) {
+            [self sendEventWithName:@"readerDiscoveryCompletion" body:@{@"error": [error localizedDescription]}];
+        } else {
+            [self sendEventWithName:@"readerDiscoveryCompletion" body:@{}];
+        }
+    }];
+}
+
 RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber ) {
     unsigned long readerIndex = [readers indexOfObjectPassingTest:^(SCPReader *reader, NSUInteger idx, BOOL *stop) {
         return [reader.serialNumber isEqualToString:serialNumber];
