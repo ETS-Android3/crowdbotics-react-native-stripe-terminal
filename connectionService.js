@@ -24,9 +24,8 @@ export default function createConnectionService(StripeTerminal, options) {
 
     static DesiredReaderAny = "any";
 
-    constructor({ policy, deviceType, discoveryMode }) {
+    constructor({ policy, discoveryMode }) {
       this.policy = policy;
-      this.deviceType = deviceType || StripeTerminal.DeviceTypeChipper2X;
       this.discoveryMode =
         discoveryMode || StripeTerminal.DiscoveryMethodBluetoothProximity;
 
@@ -138,16 +137,14 @@ export default function createConnectionService(StripeTerminal, options) {
 
       await StripeTerminal.abortDiscoverReaders(); // end any pending search
       await StripeTerminal.disconnectReader(); // cancel any existing non-matching reader
-      return StripeTerminal.discoverReaders(
-        this.deviceType,
+      return StripeTerminal.discoverReadersByMethod(
         this.discoveryMode
       );
     }
 
     async discover() {
       await StripeTerminal.abortDiscoverReaders(); // end any pending search
-      return StripeTerminal.discoverReaders(
-        this.deviceType,
+      return StripeTerminal.discoverReadersByMethod(
         this.discoveryMode
       );
     }
