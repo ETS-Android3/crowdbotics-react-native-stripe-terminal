@@ -122,6 +122,12 @@ class StripeTerminal {
     });
   }
 
+  discoverReadersByMethod(method, simulated) {
+    return this._wrapPromiseReturn('readerDiscoveryCompletion', () => {
+      RNStripeTerminal.discoverReadersByMethod(method, simulated);
+    });
+  }
+
   checkForUpdate() {
     return this._wrapPromiseReturn('updateCheck', () => {
       RNStripeTerminal.checkForUpdate();
