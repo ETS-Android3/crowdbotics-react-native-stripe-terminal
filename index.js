@@ -7,7 +7,8 @@ const { RNStripeTerminal } = NativeModules;
 class StripeTerminal {
   // Device types
   DeviceTypeChipper2X = RNStripeTerminal.DeviceTypeChipper2X;
-  DeviceTypeWisePosE = RNStripeTerminal.DeviceTypeWisePosE;
+  DeviceTypeWisePos3 = RNStripeTerminal.DeviceTypeWisePos3;
+  DeviceTypeWisePad3 = RNStripeTerminal.DeviceTypeWisePad3;
 
   // Discovery methods
   DiscoveryMethodBluetoothScan = RNStripeTerminal.DiscoveryMethodBluetoothScan;
