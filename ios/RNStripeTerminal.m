@@ -216,12 +216,11 @@ RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber ) {
 
 
 - (void)reader:(SCPReader *)reader didFinishInstallingUpdate:(nullable SCPReaderSoftwareUpdate *)update error:(nullable NSError *)error NS_SWIFT_NAME(reader(_:didFinishInstallingUpdate:error:)) {
-    if (error) {
-        [self sendEventWithName:@"updateInstall" body:@{@"error": [error localizedDescription]}];
-    } else {
-        update = nil;
-        [self sendEventWithName:@"updateInstall" body:@{}];
-    }
+   
+}
+
+RCT_EXPORT_METHOD(checkForUpdate) {
+    
 }
 
 RCT_EXPORT_METHOD(installUpdate) {
