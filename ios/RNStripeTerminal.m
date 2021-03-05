@@ -110,9 +110,8 @@ static dispatch_once_t onceToken = 0;
 
 - (void) reader:(SCPReader *)reader didReportAvailableUpdate:(SCPReaderSoftwareUpdate *)update {
     self->update = update;
-    [self sendEventWithName:@"updateCheck" body:[self serializeUpdate:update]];
+//    [self sendEventWithName:@"updateCheck" body:[self serializeUpdate:update]];
 }
-
 
 - (void)onLogEntry:(NSString * _Nonnull) logline {
     if (self.bridge == nil) {
