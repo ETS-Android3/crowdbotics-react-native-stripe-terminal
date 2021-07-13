@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/DevelopSmith/react-native-stripe-terminal"
   s.license      = "MIT"
   s.author       = { "author" => "theo@theopatt.com" }
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "10.0"
   s.source       = { :git => "https://github.com/DevelopSmith/react-native-stripe-terminal.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m}"

@@ -204,7 +204,8 @@ RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber ) {
     SCPReader *reader = readers[readerIndex];
     if ([reader deviceType] == SCPDeviceTypeWisePad3 ||
         [reader deviceType] == SCPDeviceTypeChipper2X) {
-        [SCPTerminal.shared connectBluetoothReader:reader delegate:self connectionConfig:nil completion:^(SCPReader * _Nullable reader, NSError * _Nullable error) {
+        SCPBluetoothConnectionConfiguration *config = [[SCPBluetoothConnectionConfiguration init] initWithLocationId:[reader locationId]];
+        [SCPTerminal.shared connectBluetoothReader:reader delegate:self connectionConfig:config completion:^(SCPReader * _Nullable reader, NSError * _Nullable error) {
             if (error) {
                 [self sendEventWithName:@"readerConnection" body:@{@"error": [error localizedDescription]}];
             } else {
