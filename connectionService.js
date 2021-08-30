@@ -1,5 +1,5 @@
 import EventEmitter from "eventemitter3";
-import { AsyncStorage } from "react-native";
+import { AsyncStorage, Platform } from "react-native";
 
 export default function createConnectionService(StripeTerminal, options) {
   class STCS {
@@ -24,8 +24,9 @@ export default function createConnectionService(StripeTerminal, options) {
 
     static DesiredReaderAny = "any";
 
-    constructor({ policy, discoveryMode }) {
+    constructor({ policy, deviceType, discoveryMode }) {
       this.policy = policy;
+      this.deviceType = deviceType || StripeTerminal.DeviceTypeChipper2X;
       this.discoveryMode =
         discoveryMode || StripeTerminal.DiscoveryMethodBluetoothProximity;
 
@@ -137,16 +138,32 @@ export default function createConnectionService(StripeTerminal, options) {
 
       await StripeTerminal.abortDiscoverReaders(); // end any pending search
       await StripeTerminal.disconnectReader(); // cancel any existing non-matching reader
-      return StripeTerminal.discoverReadersByMethod(
-        this.discoveryMode
-      );
+
+      if(Platform.OS === "android"){
+        return StripeTerminal.discoverReaders(
+          this.deviceType,
+          this.discoveryMode
+        );
+      }else{
+        return StripeTerminal.discoverReadersByMethod(
+          this.discoveryMode
+        );
+      }
     }
 
     async discover() {
       await StripeTerminal.abortDiscoverReaders(); // end any pending search
-      return StripeTerminal.discoverReadersByMethod(
-        this.discoveryMode
-      );
+
+      if(Platform.OS === "android"){
+        return StripeTerminal.discoverReaders(
+          this.deviceType,
+          this.discoveryMode
+        );
+      }else{
+        return StripeTerminal.discoverReadersByMethod(
+          this.discoveryMode
+        );
+      }
     }
 
     async disconnect() {
