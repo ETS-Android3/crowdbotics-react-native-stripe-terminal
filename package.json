@@ -1,7 +1,7 @@
 {
-  "name": "react-native-stripe-terminal",
+  "name": "rn-stripe-terminal",
   "title": "React Native Stripe Terminal",
-  "version": "1.5.0",
+  "version": "1.0.0",
   "description": "React Native Stripe Terminal",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DevelopSmith/react-native-stripe-terminal.git",
-    "baseUrl": "https://github.com/DevelopSmith/react-native-stripe-terminal"
+    "url": "git+https://github.com/nawaz4225/rn-stripe-terminal.git",
+    "baseUrl": "https://github.com/nawaz4225/rn-stripe-terminal"
   },
   "keywords": [
     "react-native"
