@@ -9,11 +9,11 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   RNStripeTerminal
                    DESC
-  s.homepage     = "https://github.com/DevelopSmith/react-native-stripe-terminal"
+  s.homepage     = "https://github.com/nawaz4225/rn-stripe-terminal"
   s.license      = "MIT"
   s.author       = { "author" => "theo@theopatt.com" }
   s.platform     = :ios, "10.0"
-  s.source       = { :git => "https://github.com/DevelopSmith/react-native-stripe-terminal.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/nawaz4225/rn-stripe-terminal.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m}"
   s.requires_arc = true
