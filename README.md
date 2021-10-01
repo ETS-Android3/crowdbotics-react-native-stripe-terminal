@@ -10,14 +10,14 @@ First, follow all Stripe instructions under ["Install the iOS SDK"](https://stri
 
 ### Mostly automatic installation
 
-`$ react-native link rn-stripe-terminal`
+`$ react-native link react-n-stripe-terminal`
 
 ### Manual installation
 
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `rn-stripe-terminal` and add `RNStripeTerminal.xcodeproj`
+2. Go to `node_modules` ➜ `react-n-stripe-terminal` and add `RNStripeTerminal.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNStripeTerminal.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)
 
@@ -43,7 +43,7 @@ The `StripeTerminal` object is a singleton. You must first call `StripeTerminal.
 ### Basic usage
 
 ```javascript
-import StripeTerminal from 'rn-stripe-terminal';
+import StripeTerminal from 'react-n-stripe-terminal';
 
 // First, initialize the SDK
 StripeTerminal.initialize({
