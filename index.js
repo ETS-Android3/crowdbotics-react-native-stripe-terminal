@@ -4,43 +4,60 @@ import createConnectionService from './connectionService';
 
 const { RNStripeTerminal } = NativeModules;
 
+const {      DeviceTypeChipper2X,
+  DeviceTypeWisePosE,
+DeviceTypeWisePad3,
+DiscoveryMethodBluetoothScan,
+DiscoveryMethodBluetoothProximity,
+PaymentIntentStatusRequiresPaymentMethod,
+PaymentIntentStatusRequiresConfirmation,
+PaymentIntentStatusRequiresCapture,
+PaymentIntentStatusCanceled,
+PaymentIntentStatusSucceeded,
+
+ReaderEventCardInserted,
+ReaderEventCardRemoved,
+
+PaymentStatusNotReady,
+PaymentStatusReady,
+PaymentStatusWaitingForInput,
+PaymentStatusProcessing,
+
+ConnectionStatusNotConnected,
+ConnectionStatusConnected,
+ConnectionStatusConnecting} = RNStripeTerminal.getConstants()
+
 class StripeTerminal {
   // Device types
-  DeviceTypeChipper2X = RNStripeTerminal.DeviceTypeChipper2X;
-  DeviceTypeWisePos3 = RNStripeTerminal.DeviceTypeWisePos3;
-  DeviceTypeWisePad3 = RNStripeTerminal.DeviceTypeWisePad3;
+  DeviceTypeChipper2X = DeviceTypeChipper2X;
+  DeviceTypeWisePos3 =   DeviceTypeWisePosE;
+  DeviceTypeWisePad3 = DeviceTypeWisePad3;
 
   // Discovery methods
-  DiscoveryMethodBluetoothScan = RNStripeTerminal.DiscoveryMethodBluetoothScan;
-  DiscoveryMethodBluetoothProximity =
-    RNStripeTerminal.DiscoveryMethodBluetoothProximity;
+  DiscoveryMethodBluetoothScan = DiscoveryMethodBluetoothScan;
+  DiscoveryMethodBluetoothProximity = DiscoveryMethodBluetoothProximity;
 
   // Payment intent statuses
-  PaymentIntentStatusRequiresPaymentMethod =
-    RNStripeTerminal.PaymentIntentStatusRequiresPaymentMethod;
-  PaymentIntentStatusRequiresConfirmation =
-    RNStripeTerminal.PaymentIntentStatusRequiresConfirmation;
-  PaymentIntentStatusRequiresCapture =
-    RNStripeTerminal.PaymentIntentStatusRequiresCapture;
-  PaymentIntentStatusCanceled = RNStripeTerminal.PaymentIntentStatusCanceled;
-  PaymentIntentStatusSucceeded = RNStripeTerminal.PaymentIntentStatusSucceeded;
+  PaymentIntentStatusRequiresPaymentMethod = PaymentIntentStatusRequiresPaymentMethod;
+  PaymentIntentStatusRequiresConfirmation = PaymentIntentStatusRequiresConfirmation;
+  PaymentIntentStatusRequiresCapture = PaymentIntentStatusRequiresCapture;
+  PaymentIntentStatusCanceled = PaymentIntentStatusCanceled;
+  PaymentIntentStatusSucceeded = PaymentIntentStatusSucceeded;
 
   // Reader events
-  ReaderEventCardInserted = RNStripeTerminal.ReaderEventCardInserted;
-  ReaderEventCardRemoved = RNStripeTerminal.ReaderEventCardRemoved;
+  ReaderEventCardInserted = ReaderEventCardInserted;
+  ReaderEventCardRemoved = ReaderEventCardRemoved;
 
   // Payment status
-  PaymentStatusNotReady = RNStripeTerminal.PaymentStatusNotReady;
-  PaymentStatusReady = RNStripeTerminal.PaymentStatusReady;
-  PaymentStatusWaitingForInput =
-    RNStripeTerminal.PaymentStatusWaitingForInput;
-  PaymentStatusProcessing =
-    RNStripeTerminal.PaymentStatusProcessing;
+  PaymentStatusNotReady = PaymentStatusNotReady;
+  PaymentStatusReady = PaymentStatusReady;
+  PaymentStatusWaitingForInput = PaymentStatusWaitingForInput;
+  PaymentStatusProcessing = PaymentStatusProcessing;
 
   // Connection status
-  ConnectionStatusNotConnected = RNStripeTerminal.ConnectionStatusNotConnected;
-  ConnectionStatusConnected = RNStripeTerminal.ConnectionStatusConnected;
-  ConnectionStatusConnecting = RNStripeTerminal.ConnectionStatusConnecting;
+  ConnectionStatusNotConnected = ConnectionStatusNotConnected;
+  ConnectionStatusConnected = ConnectionStatusConnected;
+  ConnectionStatusConnecting = ConnectionStatusConnecting;
 
   // Fetch connection token. Overwritten in call to initialize
   _fetchConnectionToken = () =>

@@ -1,7 +1,7 @@
 {
   "name": "react-n-stripe-terminal",
   "title": "React Native Stripe Terminal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React Native Stripe Terminal",
   "main": "index.js",
   "scripts": {
@@ -20,10 +20,13 @@
   "licenseFilename": "LICENSE",
   "peerDependencies": {
     "react": "^16.2.0",
-    "react-native": "^0.52.0"
+    "react-native": "^0.63.0"
   },
   "bugs": {
     "url": "https://github.com/nawaz4225/react-n-stripe-terminal/issues"
   },
-  "homepage": "https://github.com/nawaz4225/react-n-stripe-terminal#readme"
+  "homepage": "https://github.com/nawaz4225/react-n-stripe-terminal#readme",
+  "dependencies": {
+    "react-native": "^0.63.0"
+  }
 }
