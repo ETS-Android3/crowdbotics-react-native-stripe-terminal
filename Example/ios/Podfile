@@ -36,6 +36,6 @@ target 'Example' do
     :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
     :inhibit_warnings => true
 
-  pod 'RNStripeTerminal', :path => '../node_modules/react-native-stripe-terminal'
+  pod 'RNStripeTerminal', :path => '../node_modules/react-n-stripe-terminal'
 
 end

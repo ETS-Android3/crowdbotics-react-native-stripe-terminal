@@ -64,7 +64,8 @@ PODS:
     - React/RCTBlob
   - RNStripeTerminal (1.0.0):
     - React
-  - StripeTerminal (1.0.0-b6)
+    - StripeTerminal
+  - StripeTerminal (2.2.0)
   - yoga (0.59.2.React)
 
 DEPENDENCIES:
@@ -84,13 +85,13 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
-  - RNStripeTerminal (from `../node_modules/react-native-stripe-terminal`)
-  - StripeTerminal (= 1.0.0-b6)
+  - RNStripeTerminal (from `../node_modules/react-n-stripe-terminal`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - boost-for-react-native
+  trunk:
     - StripeTerminal
 
 EXTERNAL SOURCES:
@@ -103,7 +104,7 @@ EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
   RNStripeTerminal:
-    :path: "../node_modules/react-native-stripe-terminal"
+    :path: "../node_modules/react-n-stripe-terminal"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -112,11 +113,11 @@ SPEC CHECKSUMS:
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
-  RNStripeTerminal: c3a8c17ad6a3e17866afb4d5ec33d8607e15577e
-  StripeTerminal: f932614b20470e05e3d904d030597b180892f766
-  yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
+  React: 9d063e2f356c8cd2f54dd550d4507740037cbabe
+  RNStripeTerminal: 629abd2b433b8975fa6b5811655282ac2ae5aa35
+  StripeTerminal: d06c83ebcc000de142df04ad16713b08bdc0b7b9
+  yoga: 3768a3026ade0fb46a68f3a31a917cf86bc34fc4
 
-PODFILE CHECKSUM: f35eef1b625b5d01d642f4d7e0d2e186dce823ef
+PODFILE CHECKSUM: 326add6b2e7c007939547025b4fd2d7a67c01c26
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.10.2

@@ -6,11 +6,11 @@ React Native wrapper for the [Stripe Terminal](https://stripe.com/docs/terminal/
 
 First, follow all Stripe instructions under ["Install the iOS SDK"](https://stripe.com/docs/terminal/sdk/ios#install) and/or ["Install the Android SDK"](https://stripe.com/docs/terminal/sdk/android#install) (depending on your platform). Then:
 
-`$ npm install git+https://github.com/nawaz4225/rn-stripe-terminal.git --save`
+`$ npm install git+https://github.com/nawaz4225/react-n-stripe-terminal.git --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-n-stripe-terminal`
+`$ npm i react-n-stripe-terminal`
 
 ### Manual installation
 
@@ -110,7 +110,7 @@ inputListener.remove();
 If you're running React Native ^0.59 / React ^16.8.0, you can use [Hooks](https://reactjs.org/docs/hooks-intro.html) to seamlessly integrate Stripe Terminal into your React Native application. 
 
 ```javascript
-import StripeTerminal, { useStripeTerminal, useStripeTerminalCreatePayment } from 'react-native-stripe-terminal';
+import StripeTerminal, { useStripeTerminal, useStripeTerminalCreatePayment } from 'react-n-stripe-terminal';
 
 // Somewhere early in your application...
 StripeTerminal.initialize({

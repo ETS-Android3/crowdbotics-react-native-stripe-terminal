@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "react": "16.8.3",
+    "react-n-stripe-terminal": "^1.0.0",
     "react-native": "0.59.2"
   },
   "devDependencies": {
