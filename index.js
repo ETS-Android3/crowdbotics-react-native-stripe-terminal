@@ -4,28 +4,12 @@ import createConnectionService from './connectionService';
 
 const { RNStripeTerminal } = NativeModules;
 
-const {      DeviceTypeChipper2X,
-  DeviceTypeWisePosE,
-DeviceTypeWisePad3,
-DiscoveryMethodBluetoothScan,
-DiscoveryMethodBluetoothProximity,
-PaymentIntentStatusRequiresPaymentMethod,
-PaymentIntentStatusRequiresConfirmation,
-PaymentIntentStatusRequiresCapture,
-PaymentIntentStatusCanceled,
-PaymentIntentStatusSucceeded,
-
-ReaderEventCardInserted,
-ReaderEventCardRemoved,
-
-PaymentStatusNotReady,
-PaymentStatusReady,
-PaymentStatusWaitingForInput,
-PaymentStatusProcessing,
-
-ConnectionStatusNotConnected,
-ConnectionStatusConnected,
-ConnectionStatusConnecting} = RNStripeTerminal.getConstants()
+const { DeviceTypeChipper2X, DeviceTypeWisePosE, DeviceTypeWisePad3, DiscoveryMethodBluetoothScan, 
+  DiscoveryMethodBluetoothProximity, PaymentIntentStatusRequiresPaymentMethod, PaymentIntentStatusRequiresConfirmation,
+  PaymentIntentStatusRequiresCapture, PaymentIntentStatusCanceled, PaymentIntentStatusSucceeded,
+  ReaderEventCardInserted, ReaderEventCardRemoved, PaymentStatusNotReady,
+  PaymentStatusReady, PaymentStatusWaitingForInput, PaymentStatusProcessing,
+  ConnectionStatusNotConnected, ConnectionStatusConnected, ConnectionStatusConnecting } = RNStripeTerminal.getConstants();
 
 class StripeTerminal {
   // Device types
