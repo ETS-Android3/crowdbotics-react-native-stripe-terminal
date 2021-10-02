@@ -1,7 +1,7 @@
 {
   "name": "react-n-stripe-terminal",
   "title": "React Native Stripe Terminal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Native Stripe Terminal",
   "main": "index.js",
   "scripts": {
