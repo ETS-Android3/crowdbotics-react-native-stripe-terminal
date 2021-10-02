@@ -4,63 +4,61 @@ import createConnectionService from './connectionService';
 
 const { RNStripeTerminal } = NativeModules;
 
-const { DeviceTypeChipper2X, DeviceTypeWisePosE, DeviceTypeWisePad3, DiscoveryMethodBluetoothScan, 
-  DiscoveryMethodBluetoothProximity, PaymentIntentStatusRequiresPaymentMethod, PaymentIntentStatusRequiresConfirmation,
-  PaymentIntentStatusRequiresCapture, PaymentIntentStatusCanceled, PaymentIntentStatusSucceeded,
-  ReaderEventCardInserted, ReaderEventCardRemoved, PaymentStatusNotReady,
-  PaymentStatusReady, PaymentStatusWaitingForInput, PaymentStatusProcessing,
-  ConnectionStatusNotConnected, ConnectionStatusConnected, ConnectionStatusConnecting } = RNStripeTerminal.getConstants();
 
 class StripeTerminal {
   // Device types
-  DeviceTypeChipper2X = DeviceTypeChipper2X;
-  DeviceTypeWisePos3 =   DeviceTypeWisePosE;
-  DeviceTypeWisePad3 = DeviceTypeWisePad3;
+  DeviceTypeChipper2X = RNStripeTerminal?.DeviceTypeChipper2X;
+  DeviceTypeWisePos3 =   RNStripeTerminal?.DeviceTypeWisePosE;
+  DeviceTypeWisePad3 = RNStripeTerminal?.DeviceTypeWisePad3;
 
   // Discovery methods
-  DiscoveryMethodBluetoothScan = DiscoveryMethodBluetoothScan;
-  DiscoveryMethodBluetoothProximity = DiscoveryMethodBluetoothProximity;
+  DiscoveryMethodBluetoothScan = RNStripeTerminal?.DiscoveryMethodBluetoothScan;
+  DiscoveryMethodBluetoothProximity = RNStripeTerminal?.DiscoveryMethodBluetoothProximity;
 
   // Payment intent statuses
-  PaymentIntentStatusRequiresPaymentMethod = PaymentIntentStatusRequiresPaymentMethod;
-  PaymentIntentStatusRequiresConfirmation = PaymentIntentStatusRequiresConfirmation;
-  PaymentIntentStatusRequiresCapture = PaymentIntentStatusRequiresCapture;
-  PaymentIntentStatusCanceled = PaymentIntentStatusCanceled;
-  PaymentIntentStatusSucceeded = PaymentIntentStatusSucceeded;
+  PaymentIntentStatusRequiresPaymentMethod = RNStripeTerminal?.PaymentIntentStatusRequiresPaymentMethod;
+  PaymentIntentStatusRequiresConfirmation = RNStripeTerminal?.PaymentIntentStatusRequiresConfirmation;
+  PaymentIntentStatusRequiresCapture = RNStripeTerminal?.PaymentIntentStatusRequiresCapture;
+  PaymentIntentStatusCanceled = RNStripeTerminal?.PaymentIntentStatusCanceled;
+  PaymentIntentStatusSucceeded = RNStripeTerminal?.PaymentIntentStatusSucceeded;
 
   // Reader events
-  ReaderEventCardInserted = ReaderEventCardInserted;
-  ReaderEventCardRemoved = ReaderEventCardRemoved;
+  ReaderEventCardInserted = RNStripeTerminal?.ReaderEventCardInserted;
+  ReaderEventCardRemoved = RNStripeTerminal?.ReaderEventCardRemoved;
 
   // Payment status
-  PaymentStatusNotReady = PaymentStatusNotReady;
-  PaymentStatusReady = PaymentStatusReady;
-  PaymentStatusWaitingForInput = PaymentStatusWaitingForInput;
-  PaymentStatusProcessing = PaymentStatusProcessing;
+  PaymentStatusNotReady = RNStripeTerminal?.PaymentStatusNotReady;
+  PaymentStatusReady = RNStripeTerminal?.PaymentStatusReady;
+  PaymentStatusWaitingForInput = RNStripeTerminal?.PaymentStatusWaitingForInput;
+  PaymentStatusProcessing = RNStripeTerminal?.PaymentStatusProcessing;
 
   // Connection status
-  ConnectionStatusNotConnected = ConnectionStatusNotConnected;
-  ConnectionStatusConnected = ConnectionStatusConnected;
-  ConnectionStatusConnecting = ConnectionStatusConnecting;
+  ConnectionStatusNotConnected = RNStripeTerminal?.ConnectionStatusNotConnected;
+  ConnectionStatusConnected = RNStripeTerminal?.ConnectionStatusConnected;
+  ConnectionStatusConnecting = RNStripeTerminal?.ConnectionStatusConnecting;
 
   // Fetch connection token. Overwritten in call to initialize
   _fetchConnectionToken = () =>
     Promise.reject('You must initialize RNStripeTerminal first.');
 
   constructor() {
-    this.listener = new NativeEventEmitter(RNStripeTerminal);
+    if (RNStripeTerminal) {    
+      this.listener = new NativeEventEmitter(RNStripeTerminal);
+      console.log('RNStripeTerminal constructor')
+      this.listener.addListener('requestConnectionToken', () => {
+        this._fetchConnectionToken()
+          .then(token => {
+            if (token) {
+              RNStripeTerminal.setConnectionToken(token, null);
+            } else {
+              throw new Error('User-supplied `fetchConnectionToken` resolved successfully, but no token was returned.');
+            }
+          })
+          .catch(err => RNStripeTerminal.setConnectionToken(null, err.message || 'Error in user-supplied `fetchConnectionToken`.'));
+      });
 
-    this.listener.addListener('requestConnectionToken', () => {
-      this._fetchConnectionToken()
-        .then(token => {
-          if (token) {
-            RNStripeTerminal.setConnectionToken(token, null);
-          } else {
-            throw new Error('User-supplied `fetchConnectionToken` resolved successfully, but no token was returned.');
-          }
-        })
-        .catch(err => RNStripeTerminal.setConnectionToken(null, err.message || 'Error in user-supplied `fetchConnectionToken`.'));
-    });
+    }
+
 
     this._createListeners([
       'log',
