@@ -203,15 +203,19 @@ RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber ) {
     
     SCPReader *reader = readers[readerIndex];
     if ([reader deviceType] == SCPDeviceTypeWisePad3 ||
-        [reader deviceType] == SCPDeviceTypeChipper2X) {
-        SCPBluetoothConnectionConfiguration *config = [[SCPBluetoothConnectionConfiguration alloc] initWithLocationId:[reader locationId]];
-        [SCPTerminal.shared connectBluetoothReader:reader delegate:self connectionConfig:config completion:^(SCPReader * _Nullable reader, NSError * _Nullable error) {
-            if (error) {
-                [self sendEventWithName:@"readerConnection" body:@{@"error": [error localizedDescription]}];
-            } else {
-                [self sendEventWithName:@"readerConnection" body:[self serializeReader:reader]];
-            }
-        }];
+        [reader deviceType] == SCPDeviceTypeChipper2X ||
+        [reader deviceType] == SCPDeviceTypeChipper1X ||
+        [reader deviceType] == SCPDeviceTypeStripeM2 ||
+        [reader deviceType] == SCPDeviceTypeWiseCube) {
+            SCPBluetoothConnectionConfiguration *config = [[SCPBluetoothConnectionConfiguration alloc] initWithLocationId:[reader locationId]];
+            [SCPTerminal.shared connectBluetoothReader:reader delegate:self connectionConfig:config completion:^(SCPReader * _Nullable reader, NSError * _Nullable error) {
+                if (error) {
+                    [self sendEventWithName:@"readerConnection" body:@{@"error": [error localizedDescription]}];
+                } else {
+                    [self sendEventWithName:@"readerConnection" body:[self serializeReader:reader]];
+                }
+            }];
+
     } else {
         [SCPTerminal.shared connectInternetReader:reader connectionConfig:nil completion:^(SCPReader * _Nullable reader, NSError * _Nullable error) {
             if (error) {
