@@ -6,18 +6,18 @@ React Native wrapper for the [Stripe Terminal](https://stripe.com/docs/terminal/
 
 First, follow all Stripe instructions under ["Install the iOS SDK"](https://stripe.com/docs/terminal/sdk/ios#install) and/or ["Install the Android SDK"](https://stripe.com/docs/terminal/sdk/android#install) (depending on your platform). Then:
 
-`$ npm install git+https://github.com/nawaz4225/react-n-stripe-terminal.git --save`
+`$ npm install git+https://github.com/nawaz4225/crowdbotics-react-native-stripe-terminal.git --save`
 
 ### Mostly automatic installation
 
-`$ npm i react-n-stripe-terminal`
+`$ npm i crowdbotics-react-native-stripe-terminal`
 
 ### Manual installation
 
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-n-stripe-terminal` and add `RNStripeTerminal.xcodeproj`
+2. Go to `node_modules` ➜ `crowdbotics-react-native-stripe-terminal` and add `RNStripeTerminal.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNStripeTerminal.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)
 
@@ -43,7 +43,7 @@ The `StripeTerminal` object is a singleton. You must first call `StripeTerminal.
 ### Basic usage
 
 ```javascript
-import StripeTerminal from 'react-n-stripe-terminal';
+import StripeTerminal from 'crowdbotics-react-native-stripe-terminal';
 
 // First, initialize the SDK
 StripeTerminal.initialize({
@@ -110,7 +110,7 @@ inputListener.remove();
 If you're running React Native ^0.59 / React ^16.8.0, you can use [Hooks](https://reactjs.org/docs/hooks-intro.html) to seamlessly integrate Stripe Terminal into your React Native application. 
 
 ```javascript
-import StripeTerminal, { useStripeTerminal, useStripeTerminalCreatePayment } from 'react-n-stripe-terminal';
+import StripeTerminal, { useStripeTerminal, useStripeTerminalCreatePayment } from 'crowdbotics-react-native-stripe-terminal';
 
 // Somewhere early in your application...
 StripeTerminal.initialize({

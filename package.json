@@ -9,8 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nawaz4225/react-n-stripe-terminal.git",
-    "baseUrl": "https://github.com/nawaz4225/react-n-stripe-terminal"
+    "url": "git+https://github.com/nawaz4225/crowdbotics-react-native-stripe-terminal.git",
+    "baseUrl": "https://github.com/nawaz4225/crowdbotics-react-native-stripe-terminal"
   },
   "keywords": [
     "react-native"
@@ -23,9 +23,9 @@
     "react-native": "^0.63.0"
   },
   "bugs": {
-    "url": "https://github.com/nawaz4225/react-n-stripe-terminal/issues"
+    "url": "https://github.com/nawaz4225/crowdbotics-react-native-stripe-terminal/issues"
   },
-  "homepage": "https://github.com/nawaz4225/react-n-stripe-terminal#readme",
+  "homepage": "https://github.com/nawaz4225/crowdbotics-react-native-stripe-terminal#readme",
   "dependencies": {
     "react-native": "^0.63.0"
   }
