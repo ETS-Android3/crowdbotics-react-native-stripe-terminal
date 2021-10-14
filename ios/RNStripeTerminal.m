@@ -196,7 +196,7 @@ RCT_EXPORT_METHOD(discoverReadersByMethod:(NSInteger *)method simulated:(BOOL *)
     }];
 }
 
-RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber ) {
+RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber locationId:(NSString *)locationId) {
     unsigned long readerIndex = [readers indexOfObjectPassingTest:^(SCPReader *reader, NSUInteger idx, BOOL *stop) {
         return [reader.serialNumber isEqualToString:serialNumber];
     }];
@@ -207,7 +207,7 @@ RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber ) {
         [reader deviceType] == SCPDeviceTypeChipper1X ||
         [reader deviceType] == SCPDeviceTypeStripeM2 ||
         [reader deviceType] == SCPDeviceTypeWiseCube) {
-            SCPBluetoothConnectionConfiguration *config = [[SCPBluetoothConnectionConfiguration alloc] initWithLocationId:[reader locationId]];
+            SCPBluetoothConnectionConfiguration *config = [[SCPBluetoothConnectionConfiguration alloc] initWithLocationId:locationId];
             [SCPTerminal.shared connectBluetoothReader:reader delegate:self connectionConfig:config completion:^(SCPReader * _Nullable reader, NSError * _Nullable error) {
                 if (error) {
                     [self sendEventWithName:@"readerConnection" body:@{@"error": [error localizedDescription]}];

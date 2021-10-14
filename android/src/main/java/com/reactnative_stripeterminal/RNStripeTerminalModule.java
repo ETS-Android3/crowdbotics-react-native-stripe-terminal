@@ -513,7 +513,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
     }
 
     @ReactMethod
-    public void connectReader(String serialNumber){
+    public void connectReader(String serialNumber, String locationId){
         Reader selectedReader = null;
         if(discoveredReadersList!=null && discoveredReadersList.size()>0){
             for(Reader reader:discoveredReadersList){

@@ -140,9 +140,9 @@ class StripeTerminal {
     })
   }
 
-  connectReader(serialNumber) {
+  connectReader(serialNumber, locationId) {
     return this._wrapPromiseReturn('readerConnection', () => {
-      RNStripeTerminal.connectReader(serialNumber);
+      RNStripeTerminal.connectReader(serialNumber, locationId);
     });
   }
 
