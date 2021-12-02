@@ -1,7 +1,7 @@
 {
   "name": "crowdbotics-react-native-stripe-terminal",
   "title": "React Native Stripe Terminal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React Native Stripe Terminal",
   "main": "index.js",
   "scripts": {
