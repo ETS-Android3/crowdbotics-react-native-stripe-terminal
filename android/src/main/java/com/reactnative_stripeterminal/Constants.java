@@ -1,11 +1,12 @@
 package com.reactnative_stripeterminal;
 
-import com.stripe.stripeterminal.model.external.ConnectionStatus;
-import com.stripe.stripeterminal.model.external.DeviceType;
-import com.stripe.stripeterminal.model.external.PaymentIntent;
-import com.stripe.stripeterminal.model.external.PaymentIntentStatus;
-import com.stripe.stripeterminal.model.external.PaymentStatus;
-import com.stripe.stripeterminal.model.external.ReaderEvent;
+import com.stripe.stripeterminal.external.models.DeviceType;
+import com.stripe.stripeterminal.external.models.ConnectionStatus;
+import com.stripe.stripeterminal.external.models.DeviceType;
+import com.stripe.stripeterminal.external.models.PaymentIntent;
+import com.stripe.stripeterminal.external.models.PaymentIntentStatus;
+import com.stripe.stripeterminal.external.models.PaymentStatus;
+import com.stripe.stripeterminal.external.models.ReaderEvent;
 
 import java.util.HashMap;
 
