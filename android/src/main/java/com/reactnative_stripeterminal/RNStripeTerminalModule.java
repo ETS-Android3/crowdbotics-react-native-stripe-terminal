@@ -163,8 +163,9 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
     public void discoverReaders(int deviceType, int method, int simulated) {
         boolean isSimulated = simulated == 0 ? false : true;
         try {
-            DeviceType devType = DeviceType.values()[deviceType];
-            DiscoveryConfiguration discoveryConfiguration = new DiscoveryConfiguration(0, DiscoveryMethod.BLUETOOTH_SCAN, isSimulated);
+
+            DiscoveryMethod discoveryMethod = DiscoveryMethod.values()[method];
+            DiscoveryConfiguration discoveryConfiguration = new DiscoveryConfiguration(0, discoveryMethod, isSimulated);
             Callback statusCallback = new Callback() {
 
                 @Override
