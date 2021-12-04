@@ -28,12 +28,12 @@ First, follow all Stripe instructions under ["Install the iOS SDK"](https://stri
   - Add `new RNStripeTerminalPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
-  	include ':react-native-stripe-terminal'
-  	project(':react-native-stripe-terminal').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-stripe-terminal/android')
+  	include ':crowdbotics-react-native-stripe-terminal'
+  	project(':crowdbotics-react-native-stripe-terminal').projectDir = new File(rootProject.projectDir, 	'../node_modules/crowdbotics-react-native-stripe-terminal/android')
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      compile project(':react-native-stripe-terminal')
+      compile project(':crowdbotics-react-native-stripe-terminal')
   	```
 
 ## Usage
