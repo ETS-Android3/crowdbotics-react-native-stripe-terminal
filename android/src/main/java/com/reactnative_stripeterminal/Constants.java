@@ -14,6 +14,9 @@ public class Constants {
     public static final HashMap<String,Object> constants = new HashMap<String,Object>();
 
     //Plugin Events
+    public static final String EVENT_READER_UPDATE_AVAILABLE = "readerUpdateAvailable";
+    public static final String EVENT_READER_UPDATE_START = "updateInstallStart";
+    public static final String EVENT_READER_UPADATE_FINISH = "updateInstallFinish";
     public static final String EVENT_READER_DISCOVERY_COMPLETION = "readerDiscoveryCompletion";
     public static final String EVENT_READERS_DISCOVERED = "readersDiscovered";
     public static final String EVENT_LAST_READER_EVENT = "lastReaderEvent";
@@ -37,9 +40,7 @@ public class Constants {
     public static final String EVENT_ABORT_DISCOVER_READER_COMPLETION = "abortDiscoverReadersCompletion";
     public static final String EVENT_PAYMENT_STATUS = "paymentStatus";
     public static final String EVENT_CONNECTION_STATUS = "connectionStatus";
-    public static final String EVENT_UPDATE_CHECK = "updateCheck";
     public static final String EVENT_READER_SOFTWARE_UPDATE_PROGRESS = "readerSoftwareUpdateProgress";
-    public static final String EVENT_UPDATE_INSTALL = "updateInstall";
     public static final String EVENT_ABORT_INSTALL_COMPLETION = "abortInstallUpdateCompletion";
     public static final String EVENT_ABORT_CREATE_PAYMENT_COMPLETION = "abortCreatePaymentCompletion";
 

@@ -30,8 +30,9 @@ static dispatch_once_t onceToken = 0;
         @"readerDiscoveryCompletion",
         @"readerDisconnectCompletion",
         @"readerConnection",
-        @"updateCheck",
-        @"updateInstall",
+        @"readerUpdateAvailable",
+        @"updateInstallStart",
+        @"updateInstallFinish",
         @"paymentCreation",
         @"paymentIntentCreation",
         @"paymentIntentRetrieval",
@@ -110,11 +111,11 @@ static dispatch_once_t onceToken = 0;
 
 - (void) reader:(SCPReader *)reader didReportAvailableUpdate:(SCPReaderSoftwareUpdate *)update {
     self->update = update;
-//    [self sendEventWithName:@"updateCheck" body:[self serializeUpdate:update]];
+    [self sendEventWithName:@"readerUpdateAvailable" body:[self serializeUpdate:update]];
 }
 
 - (void)reader:(SCPReader *)reader didStartInstallingUpdate:(SCPReaderSoftwareUpdate *)update cancelable:(SCPCancelable *)cancelable {
-    
+    [self sendEventWithName:@"updateInstallStart" body:[self serializeUpdate:update]];
 }
 
 
@@ -229,15 +230,12 @@ RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber locationId:(NSString *)
 
 
 - (void)reader:(SCPReader *)reader didFinishInstallingUpdate:(nullable SCPReaderSoftwareUpdate *)update error:(nullable NSError *)error NS_SWIFT_NAME(reader(_:didFinishInstallingUpdate:error:)) {
-    
+    [self sendEventWithName:@"updateInstallFinish" body:[self serializeUpdate:update]];
 }
 
-RCT_EXPORT_METHOD(checkForUpdate) {
-    
-}
 
 RCT_EXPORT_METHOD(installUpdate) {
-//    [SCPTerminal.shared installAvailableUpdate];
+    [SCPTerminal.shared installAvailableUpdate];
 }
 
 - (NSDictionary *)serializeReader:(SCPReader *)reader {

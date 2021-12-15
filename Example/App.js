@@ -33,7 +33,7 @@ export default class App extends Component {
 
     StripeTerminal.initialize({
       fetchConnectionToken: () => {
-        return fetch('http://10.0.1.35:8080/_scanner/terminal_connection_token?api_key=2e21c24db5f8bfae31cf420b60f45df6', {
+        return fetch('https://stripeterminal-reactnative.herokuapp.com/terminal_connection_token', {
           method: 'POST'
         })
         .then(resp => resp.json())

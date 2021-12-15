@@ -1,3 +1,6 @@
 rootProject.name = 'Example'
 
 include ':app'
+
+include ':crowdbotics-react-native-stripe-terminal'
+project(':crowdbotics-react-native-stripe-terminal').projectDir = new File(rootProject.projectDir, 	'../node_modules/crowdbotics-react-native-stripe-terminal/android')

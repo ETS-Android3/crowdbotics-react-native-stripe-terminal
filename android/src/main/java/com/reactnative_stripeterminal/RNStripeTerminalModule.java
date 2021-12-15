@@ -50,6 +50,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.reactnative_stripeterminal.Constants.*;
+import static com.reactnative_stripeterminal.Constants.EVENT_READER_UPADATE_FINISH;
+import static com.reactnative_stripeterminal.Constants.EVENT_READER_UPDATE_AVAILABLE;
+import static com.reactnative_stripeterminal.Constants.EVENT_READER_UPDATE_START;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -163,9 +166,8 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
     public void discoverReaders(int deviceType, int method, int simulated) {
         boolean isSimulated = simulated == 0 ? false : true;
         try {
-
-            DiscoveryMethod discoveryMethod = DiscoveryMethod.values()[method];
-            DiscoveryConfiguration discoveryConfiguration = new DiscoveryConfiguration(0, discoveryMethod, isSimulated);
+            DeviceType devType = DeviceType.values()[deviceType];
+            DiscoveryConfiguration discoveryConfiguration = new DiscoveryConfiguration(0, DiscoveryMethod.BLUETOOTH_SCAN, isSimulated);
             Callback statusCallback = new Callback() {
 
                 @Override
@@ -554,23 +556,23 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
 
     @ReactMethod
     public void disconnectReader(){
-       if(Terminal.getInstance().getConnectedReader()==null){
-           sendEventWithName(EVENT_READER_DISCONNECTION_COMPLETION,Arguments.createMap());
-       }else{
-           Terminal.getInstance().disconnectReader(new Callback() {
-               @Override
-               public void onSuccess() {
-                   sendEventWithName(EVENT_READER_DISCONNECTION_COMPLETION,Arguments.createMap());
-               }
+        if(Terminal.getInstance().getConnectedReader()==null){
+            sendEventWithName(EVENT_READER_DISCONNECTION_COMPLETION,Arguments.createMap());
+        }else{
+            Terminal.getInstance().disconnectReader(new Callback() {
+                @Override
+                public void onSuccess() {
+                    sendEventWithName(EVENT_READER_DISCONNECTION_COMPLETION,Arguments.createMap());
+                }
 
-               @Override
-               public void onFailure(@Nonnull TerminalException e) {
+                @Override
+                public void onFailure(@Nonnull TerminalException e) {
                     WritableMap errorMap = Arguments.createMap();
                     errorMap.putString(ERROR,e.getErrorMessage());
                     sendEventWithName(EVENT_READER_DISCONNECTION_COMPLETION,errorMap);
-               }
-           });
-       }
+                }
+            });
+        }
     }
 
     @ReactMethod
@@ -657,6 +659,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
 
     @ReactMethod
     public void installUpdate(){
+        Terminal.getInstance().installAvailableUpdate();
 //        pendingInstallUpdate = Terminal.getInstance().installUpdate(readerSoftwareUpdate,this, new Callback() {
 //            @Override
 //            public void onSuccess() {
@@ -669,24 +672,6 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
 //                WritableMap errorMap = Arguments.createMap();
 //                errorMap.putString(ERROR,e.getErrorMessage());
 //                sendEventWithName(EVENT_UPDATE_INSTALL,errorMap);
-//            }
-//        });
-    }
-
-    @ReactMethod
-    public void checkForUpdate(){
-//        Terminal.getInstance().checkForUpdate(new ReaderSoftwareUpdateCallback() {
-//            @Override
-//            public void onSuccess(@Nullable ReaderSoftwareUpdate readerSoftwareUpdate) {
-//                RNStripeTerminalModule.this.readerSoftwareUpdate = readerSoftwareUpdate;
-//                sendEventWithName(EVENT_UPDATE_CHECK,serializeUpdate(readerSoftwareUpdate));
-//            }
-//
-//            @Override
-//            public void onFailure(@Nonnull TerminalException e) {
-//                WritableMap errorMap = Arguments.createMap();
-//                errorMap.putString(ERROR,e.getErrorMessage());
-//                sendEventWithName(EVENT_UPDATE_CHECK,errorMap);
 //            }
 //        });
     }
@@ -713,7 +698,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
 
     @Override
     public void onReportLowBatteryWarning() {
-       sendEventWithName(EVENT_DID_REPORT_LOW_BATTERY_WARNING,Arguments.createMap());
+        sendEventWithName(EVENT_DID_REPORT_LOW_BATTERY_WARNING,Arguments.createMap());
     }
 
     @Override
@@ -765,17 +750,17 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
 
     @Override
     public void onFinishInstallingUpdate(@org.jetbrains.annotations.Nullable ReaderSoftwareUpdate readerSoftwareUpdate, @org.jetbrains.annotations.Nullable TerminalException e) {
-
+        sendEventWithName(EVENT_READER_UPADATE_FINISH, serializeUpdate(readerSoftwareUpdate));
     }
 
     @Override
     public void onReportAvailableUpdate(@NotNull ReaderSoftwareUpdate readerSoftwareUpdate) {
-
+        sendEventWithName(EVENT_READER_UPDATE_AVAILABLE, serializeUpdate(readerSoftwareUpdate));
     }
 
     @Override
     public void onStartInstallingUpdate(@NotNull ReaderSoftwareUpdate readerSoftwareUpdate, @org.jetbrains.annotations.Nullable Cancelable cancelable) {
-
+        sendEventWithName(EVENT_READER_UPDATE_START, serializeUpdate(readerSoftwareUpdate));
     }
 
     @Override

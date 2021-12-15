@@ -8,9 +8,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "react": "16.8.3",
-    "react-n-stripe-terminal": "^1.0.0",
-    "react-native": "0.59.2"
+    "react": "16.13.1",
+    "crowdbotics-react-native-stripe-terminal": "^1.0.2",
+    "react-native": "0.63.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
