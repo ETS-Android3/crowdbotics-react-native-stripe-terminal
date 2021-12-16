@@ -67,6 +67,7 @@ class StripeTerminal {
       "readerUpdateAvailable",
       "updateInstallStart",
       "updateInstallFinish",
+      "updateFailedBatteryLow",
       'didRequestReaderInput',
       'didRequestReaderDisplayMessage',
       'didReportReaderEvent',

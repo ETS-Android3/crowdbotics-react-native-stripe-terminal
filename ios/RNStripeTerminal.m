@@ -33,6 +33,7 @@ static dispatch_once_t onceToken = 0;
         @"readerUpdateAvailable",
         @"updateInstallStart",
         @"updateInstallFinish",
+        @"updateFailedBatteryLow",
         @"paymentCreation",
         @"paymentIntentCreation",
         @"paymentIntentRetrieval",
@@ -211,7 +212,11 @@ RCT_EXPORT_METHOD(connectReader:(NSString *)serialNumber locationId:(NSString *)
             SCPBluetoothConnectionConfiguration *config = [[SCPBluetoothConnectionConfiguration alloc] initWithLocationId:locationId];
             [SCPTerminal.shared connectBluetoothReader:reader delegate:self connectionConfig:config completion:^(SCPReader * _Nullable reader, NSError * _Nullable error) {
                 if (error) {
-                    [self sendEventWithName:@"readerConnection" body:@{@"error": [error localizedDescription]}];
+                    if (error.code == SCPErrorReaderSoftwareUpdateFailedBatteryLow) {
+                        [self sendEventWithName:@"updateFailedBatteryLow" body:@{@"error": [error localizedDescription]}];
+                    } else {
+                        [self sendEventWithName:@"readerConnection" body:@{@"error": [error localizedDescription]}];
+                    }
                 } else {
                     [self sendEventWithName:@"readerConnection" body:[self serializeReader:reader]];
                 }

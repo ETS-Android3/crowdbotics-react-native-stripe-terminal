@@ -50,9 +50,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.reactnative_stripeterminal.Constants.*;
-import static com.reactnative_stripeterminal.Constants.EVENT_READER_UPADATE_FINISH;
-import static com.reactnative_stripeterminal.Constants.EVENT_READER_UPDATE_AVAILABLE;
-import static com.reactnative_stripeterminal.Constants.EVENT_READER_UPDATE_START;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -544,7 +541,11 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
                 public void onFailure(@Nonnull TerminalException e) {
                     WritableMap errorMap = Arguments.createMap();
                     errorMap.putString(ERROR, e.getErrorMessage());
-                    sendEventWithName(EVENT_READER_CONNECTION, errorMap);
+                    if (e.getErrorCode() == TerminalException.TerminalErrorCode.READER_SOFTWARE_UPDATE_FAILED_BATTERY_LOW) {
+                        sendEventWithName(EVENT_READER_FAILED_BATTERY, errorMap);
+                    } else {
+                        sendEventWithName(EVENT_READER_CONNECTION, errorMap);
+                    }
                 }
             });
         }else{
@@ -750,7 +751,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
 
     @Override
     public void onFinishInstallingUpdate(@org.jetbrains.annotations.Nullable ReaderSoftwareUpdate readerSoftwareUpdate, @org.jetbrains.annotations.Nullable TerminalException e) {
-        sendEventWithName(EVENT_READER_UPADATE_FINISH, serializeUpdate(readerSoftwareUpdate));
+        sendEventWithName(EVENT_READER_UPDATE_FINISH, serializeUpdate(readerSoftwareUpdate));
     }
 
     @Override

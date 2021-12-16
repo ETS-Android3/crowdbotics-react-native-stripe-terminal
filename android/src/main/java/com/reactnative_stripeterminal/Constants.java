@@ -16,7 +16,8 @@ public class Constants {
     //Plugin Events
     public static final String EVENT_READER_UPDATE_AVAILABLE = "readerUpdateAvailable";
     public static final String EVENT_READER_UPDATE_START = "updateInstallStart";
-    public static final String EVENT_READER_UPADATE_FINISH = "updateInstallFinish";
+    public static final String EVENT_READER_UPDATE_FINISH = "updateInstallFinish";
+    public static final String EVENT_READER_FAILED_BATTERY = "updateFailedBatteryLow";
     public static final String EVENT_READER_DISCOVERY_COMPLETION = "readerDiscoveryCompletion";
     public static final String EVENT_READERS_DISCOVERED = "readersDiscovered";
     public static final String EVENT_LAST_READER_EVENT = "lastReaderEvent";
