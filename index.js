@@ -139,9 +139,7 @@ class StripeTerminal {
   }
 
   installUpdate() {
-    return this._wrapPromiseReturn('updateInstall', () => {
       RNStripeTerminal.installUpdate();
-    })
   }
 
   connectReader(serialNumber, locationId) {
